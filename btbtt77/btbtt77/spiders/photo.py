@@ -12,7 +12,7 @@ REDIS = redis.Redis(connection_pool=REDIS_CONN_POOL)
 LIST_KEY_ALBUM = "btbtt77_list_album"
 HASH_KEY_PHOTO = "btbtt77_hash_photo"
 LIST_KEY_IMAGE = "list_image"
-IMAGE_HOME = "/Volumes/Destiny/JavaTools/PycharmProjects/image/btbtt77"
+IMAGE_HOME = "/Volumes/Destiny/Image/scrapy/btbtt77"
 
 
 class Btbtt77PhotoSpider(RedisSpider):

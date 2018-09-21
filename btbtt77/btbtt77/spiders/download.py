@@ -10,7 +10,7 @@ REDIS_CONN_POOL = redis.ConnectionPool(host=SERVER_IP, port=SERVER_PORT)
 REDIS = redis.Redis(connection_pool=REDIS_CONN_POOL)
 
 HASH_KEY_PHOTO = "btbtt77_hash_photo"
-LIST_KEY_IMAGE = "list_image:test"
+LIST_KEY_IMAGE = "list_image"
 
 
 class DownloadSpider(RedisSpider):
