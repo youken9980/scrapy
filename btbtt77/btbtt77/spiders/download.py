@@ -15,6 +15,7 @@ LIST_KEY_IMAGE = "list_image"
 
 class DownloadSpider(RedisSpider):
     name = 'download'
+    allowed_domains = ['btbtt77.com']
     redis_key = LIST_KEY_IMAGE
 
     def parse(self, response):

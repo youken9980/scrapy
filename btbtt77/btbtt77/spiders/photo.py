@@ -24,11 +24,11 @@ class Btbtt77PhotoSpider(RedisSpider):
         index = 0
         photo_desc = response.css('meta[name=keywords]::attr("content")').extract_first()
         for photo_url in response.css('div.message img::attr("src")').extract():
+            photo = Btbtt77Item()
+            photo['url'] = photo_url
             index += 1
             suffix = os.path.splitext(photo_url)[1]
-            album = Btbtt77Item()
-            album['url'] = photo_url
-            album['file_path'] = "%s/%s/%s%s" % (IMAGE_HOME, photo_desc, index, suffix)
-            if not REDIS.hexists(HASH_KEY_PHOTO, album['url']):
-                REDIS.hset(HASH_KEY_PHOTO, album['url'], album)
-                REDIS.lpush(LIST_KEY_IMAGE, album['url'])
+            photo['file_path'] = "%s/%s/%s%s" % (IMAGE_HOME, photo_desc, index, suffix)
+            if not REDIS.hexists(HASH_KEY_PHOTO, photo['url']):
+                REDIS.hset(HASH_KEY_PHOTO, photo['url'], photo)
+                REDIS.lpush(LIST_KEY_IMAGE, photo['url'])
