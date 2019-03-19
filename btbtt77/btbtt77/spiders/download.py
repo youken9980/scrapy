@@ -9,17 +9,18 @@ SERVER_PORT = 6379
 REDIS_CONN_POOL = redis.ConnectionPool(host=SERVER_IP, port=SERVER_PORT)
 REDIS = redis.Redis(connection_pool=REDIS_CONN_POOL)
 
-HASH_KEY_PHOTO = "btbtt77_hash_photo"
-LIST_KEY_IMAGE = "list_image"
+DOMAIN = "btbtt77.com"
+PHOTO_HASH = "%s_photo_hash" % DOMAIN
+PHOTO_LIST = "%s_photo_list" % DOMAIN
 
 
 class DownloadSpider(RedisSpider):
     name = 'download'
-    allowed_domains = ['btbtt77.com']
-    redis_key = LIST_KEY_IMAGE
+    allowed_domains = [DOMAIN]
+    redis_key = PHOTO_LIST
 
     def parse(self, response):
-        json = REDIS.hget(HASH_KEY_PHOTO, response.url).decode()
+        json = REDIS.hget(PHOTO_HASH, response.url).decode()
         album = Btbtt77Item(eval(json))
         dirs = os.path.split(album['file_path'])[0]
         if not os.path.exists(dirs):

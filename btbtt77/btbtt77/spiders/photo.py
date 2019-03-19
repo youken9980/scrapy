@@ -9,16 +9,17 @@ SERVER_PORT = 6379
 REDIS_CONN_POOL = redis.ConnectionPool(host=SERVER_IP, port=SERVER_PORT)
 REDIS = redis.Redis(connection_pool=REDIS_CONN_POOL)
 
-LIST_KEY_ALBUM = "btbtt77_list_album"
-HASH_KEY_PHOTO = "btbtt77_hash_photo"
-LIST_KEY_IMAGE = "list_image"
-IMAGE_HOME = "/Volumes/Destiny/Image/scrapy/btbtt77"
+DOMAIN = "btbtt77.com"
+ALBUM_LIST = "%s_album_list" % DOMAIN
+PHOTO_HASH = "%s_photo_hash" % DOMAIN
+PHOTO_LIST = "%s_photo_list" % DOMAIN
+IMAGE_HOME = "~/Downloads/scrapy/%s" % DOMAIN
 
 
 class Btbtt77PhotoSpider(RedisSpider):
     name = 'photo'
-    allowed_domains = ['btbtt77.com']
-    redis_key = LIST_KEY_ALBUM
+    allowed_domains = [DOMAIN]
+    redis_key = ALBUM_LIST
 
     def parse(self, response):
         index = 0
@@ -29,6 +30,6 @@ class Btbtt77PhotoSpider(RedisSpider):
             index += 1
             suffix = os.path.splitext(photo_url)[1]
             photo['file_path'] = "%s/%s/%s%s" % (IMAGE_HOME, photo_desc, index, suffix)
-            if not REDIS.hexists(HASH_KEY_PHOTO, photo['url']):
-                REDIS.hset(HASH_KEY_PHOTO, photo['url'], photo)
-                REDIS.lpush(LIST_KEY_IMAGE, photo['url'])
+            if not REDIS.hexists(PHOTO_HASH, photo['url']):
+                REDIS.hset(PHOTO_HASH, photo['url'], photo)
+                REDIS.lpush(PHOTO_LIST, photo['url'])
