@@ -1,20 +1,14 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 
-import redis
-from ..items import Btbtt77Item
 from scrapy_redis.spiders import RedisSpider
 
-SERVER_IP = "127.0.0.1"
-SERVER_PORT = 6379
-REDIS_CONN_POOL = redis.ConnectionPool(host=SERVER_IP, port=SERVER_PORT)
-REDIS = redis.Redis(connection_pool=REDIS_CONN_POOL)
+from .const import *
+from ..items import Btbtt77Item
 
-DOMAIN = "btbtt77.com"
-ALBUM_LIST = "%s_album_list" % DOMAIN
-PHOTO_HASH = "%s_photo_hash" % DOMAIN
-PHOTO_LIST = "%s_photo_list" % DOMAIN
-IMAGE_HOME = "~/Downloads/scrapy/%s" % DOMAIN
+sys.path.append("../../")
+from utils.redis import REDIS
 
 
 class Btbtt77PhotoSpider(RedisSpider):

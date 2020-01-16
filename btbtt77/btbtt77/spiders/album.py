@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
-import redis
+
+import sys
+
 import scrapy
 
+from .const import *
 from ..items import Btbtt77Item
 
-SERVER_IP = "127.0.0.1"
-SERVER_PORT = 6379
-REDIS_CONN_POOL = redis.ConnectionPool(host=SERVER_IP, port=SERVER_PORT)
-REDIS = redis.Redis(connection_pool=REDIS_CONN_POOL)
-
-DOMAIN = "btbtt77.com"
-ALBUM_HASH = "%s_album_hash" % DOMAIN
-ALBUM_LIST = "%s_album_list" % DOMAIN
-START_URL = "http://%s/forum-index-fid-8.htm" % DOMAIN
+sys.path.append("../../")
+from utils.redis import REDIS
 
 
 class Btbtt77AlbumSpider(scrapy.Spider):
