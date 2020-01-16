@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from scrapy_redis.spiders import RedisSpider
-import redis
 import os
-from btbtt77.items import Btbtt77Item
+
+import redis
+from ..items import Btbtt77Item
+from scrapy_redis.spiders import RedisSpider
 
 SERVER_IP = "127.0.0.1"
 SERVER_PORT = 6379

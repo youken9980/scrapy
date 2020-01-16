@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from scrapy_redis.spiders import RedisSpider
-import scrapy
-import redis
 import os
-from mzitu.items import MzituItem
+
+import redis
+import scrapy
+from scrapy_redis.spiders import RedisSpider
+
+from ..items import MzituItem
 
 SERVER_IP = "127.0.0.1"
 SERVER_PORT = 6379
@@ -13,7 +15,7 @@ REDIS = redis.Redis(connection_pool=REDIS_CONN_POOL)
 LIST_KEY_ALBUM = "mzitu_list_album"
 HASH_KEY_PHOTO = "mzitu_hash_photo"
 LIST_KEY_IMAGE = "list_image"
-IMAGE_HOME = "/Volumes/Destiny/Image/scrapy/mzitu"
+IMAGE_HOME = "~/Downloads/scrapy/mzitu"
 
 
 class PhotoSpider(RedisSpider):

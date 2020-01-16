@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-import scrapy
 import redis
-from btbtt77.items import Btbtt77Item
+import scrapy
+
+from ..items import Btbtt77Item
 
 SERVER_IP = "127.0.0.1"
 SERVER_PORT = 6379

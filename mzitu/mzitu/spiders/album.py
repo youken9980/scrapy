@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-import scrapy
 import redis
-from mzitu.items import MzituItem
+import scrapy
+
+from ..items import MzituItem
 
 SERVER_IP = "127.0.0.1"
 SERVER_PORT = 6379

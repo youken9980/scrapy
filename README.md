@@ -3,7 +3,10 @@
 #### install python, scrapy
 ```shell script
 brew install python3
+pip3 install redis==2.10.6
 pip3 install scrapy
+pip3 install scrapy-redis
+pip3 freeze
 ```
 
 #### docker run redis

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from scrapy_redis.spiders import RedisSpider
-import redis
 import os
-from mzitu.items import MzituItem
+
+import redis
+from scrapy_redis.spiders import RedisSpider
+
+from ..items import MzituItem
 
 SERVER_IP = "127.0.0.1"
 SERVER_PORT = 6379
